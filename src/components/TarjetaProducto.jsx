@@ -11,6 +11,17 @@ function IconoFoto() {
   )
 }
 
+// Unidades en existencia. Solo aparece si el producto tiene el campo "disponibles".
+function Disponibles({ cantidad }) {
+  if (typeof cantidad !== 'number') return null
+  if (cantidad <= 0) return <span className="disponibles disponibles--agotado">Agotado</span>
+  return (
+    <span className="disponibles">
+      {cantidad} {cantidad === 1 ? 'disponible' : 'disponibles'}
+    </span>
+  )
+}
+
 function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
   const seccion = buscarSeccion(negocio, producto.seccion)
   return (
@@ -44,7 +55,10 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
               ? `Espacio reservado para un producto real de ${negocio.categoria.toLowerCase()}.`
               : '')}
         </p>
-        <p className="tarjeta-producto__precio">{producto.precio || 'Precio por definir'}</p>
+        <div className="tarjeta-producto__pie">
+          <p className="tarjeta-producto__precio">{producto.precio || 'Precio por definir'}</p>
+          <Disponibles cantidad={producto.disponibles} />
+        </div>
       </div>
     </article>
   )

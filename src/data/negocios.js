@@ -44,6 +44,8 @@
 //    imagen      foto del producto                          (opcional)
 //    seccion     id de la sección a la que pertenece, ej. 'jugos'
 //                (si no tiene, aparece en "Otros productos")
+//    disponibles número de unidades en existencia, ej. 3      (opcional)
+//                (0 → dice "Agotado"; si no lo pones, no se muestra nada)
 //    insignia    sello corto sobre la foto, ej. 'La primera de la casa' (opcional)
 //    destacado   true → también aparece en "Productos destacados" del inicio
 //    demo        true → producto de EJEMPLO (muestra el sello "Demostración").
@@ -117,12 +119,12 @@ const DATOS = [
       },
     ],
     productos: [
-      { id: 'demo-1', seccion: 'natura', nombre: 'Perfume de ejemplo', destacado: true, demo: true },
-      { id: 'demo-2', seccion: 'natura', nombre: 'Crema de ejemplo', demo: true },
-      { id: 'demo-3', seccion: 'esika', nombre: 'Perfume de ejemplo', destacado: true, demo: true },
-      { id: 'demo-4', seccion: 'esika', nombre: 'Labial de ejemplo', demo: true },
-      { id: 'demo-5', seccion: 'yanbal', nombre: 'Perfume de ejemplo', demo: true },
-      { id: 'demo-6', seccion: 'yanbal', nombre: 'Crema de ejemplo', demo: true },
+      { id: 'demo-1', seccion: 'natura', nombre: 'Perfume de ejemplo', disponibles: 3, destacado: true, demo: true },
+      { id: 'demo-2', seccion: 'natura', nombre: 'Crema de ejemplo', disponibles: 1, demo: true },
+      { id: 'demo-3', seccion: 'esika', nombre: 'Perfume de ejemplo', disponibles: 2, destacado: true, demo: true },
+      { id: 'demo-4', seccion: 'esika', nombre: 'Labial de ejemplo', disponibles: 0, demo: true },
+      { id: 'demo-5', seccion: 'yanbal', nombre: 'Perfume de ejemplo', disponibles: 4, demo: true },
+      { id: 'demo-6', seccion: 'yanbal', nombre: 'Crema de ejemplo', disponibles: 2, demo: true },
       // Ejemplo de un producto real de revista (quita las // para usarlo):
       // {
       //   id: 'natura-kaiak',
@@ -130,6 +132,7 @@ const DATOS = [
       //   nombre: 'Kaiak Clásico 100 ml',
       //   descripcion: 'Escribe aquí la descripción.',
       //   precio: '$ 0.000',
+      //   disponibles: 2,
       //   imagen: '/imagenes/productos/natura-kaiak.jpg',
       // },
     ],
