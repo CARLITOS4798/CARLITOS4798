@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-labelledby="t">
+  <title id="t">Ilustración de dos frascos de perfume y un tarro de crema</title>
+  <rect width="400" height="240" fill="#EFE3EE"/>
+  <circle cx="60" cy="40" r="64" fill="#E4D1E3"/>
+  <circle cx="360" cy="214" r="70" fill="#E4D1E3"/>
+  <rect x="40" y="190" width="320" height="12" rx="6" fill="#5A385D" opacity="0.25"/>
+  <!-- perfume grande -->
+  <rect x="112" y="40" width="28" height="20" rx="4" fill="#E2A93B" stroke="#7D5A10" stroke-width="4"/>
+  <rect x="118" y="60" width="16" height="14" fill="#C9A6CB" stroke="#5A385D" stroke-width="4"/>
+  <rect x="78" y="74" width="96" height="116" rx="22" fill="#C9A6CB" stroke="#5A385D" stroke-width="5"/>
+  <rect x="94" y="96" width="20" height="74" rx="10" fill="#FFFFFF" opacity="0.55"/>
+  <rect x="104" y="124" width="56" height="32" rx="6" fill="#FBF7F1" stroke="#5A385D" stroke-width="3"/>
+  <rect x="114" y="134" width="36" height="5" rx="2.5" fill="#7A4E7E"/>
+  <rect x="120" y="143" width="24" height="5" rx="2.5" fill="#7A4E7E" opacity="0.6"/>
+  <!-- perfume pequeño -->
+  <circle cx="226" cy="98" r="10" fill="#E2A93B" stroke="#7D5A10" stroke-width="4"/>
+  <rect x="219" y="106" width="14" height="12" fill="#F2B8C6" stroke="#5A385D" stroke-width="4"/>
+  <path d="M190 190c-6-44 8-72 36-72s42 28 36 72z" fill="#F2B8C6" stroke="#5A385D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M206 140c-4 12-4 24-2 36" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+  <!-- tarro de crema -->
+  <rect x="282" y="128" width="84" height="20" rx="6" fill="#7A4E7E" stroke="#5A385D" stroke-width="4"/>
+  <rect x="286" y="148" width="76" height="42" rx="8" fill="#FBF7F1" stroke="#5A385D" stroke-width="5"/>
+  <path d="M302 128c4-14 16-18 22-10 6-10 20-6 22 10z" fill="#FFFFFF" stroke="#5A385D" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="324" cy="169" r="8" fill="#F2B8C6"/>
+  <!-- destellos -->
+  <g fill="#E2A93B">
+    <path d="M200 40l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+    <path d="M320 60l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-labelledby="t">
+  <title id="t">Ilustración de productos de aseo: atomizador, botella de detergente, jabón y burbujas</title>
+  <rect width="400" height="240" fill="#E3EEE0"/>
+  <circle cx="340" cy="36" r="64" fill="#D2E3CD"/>
+  <circle cx="40" cy="220" r="70" fill="#D2E3CD"/>
+  <rect x="40" y="190" width="320" height="12" rx="6" fill="#22463C" opacity="0.25"/>
+  <!-- atomizador -->
+  <path d="M96 62h44l10 18h-20l-6 10h-22z" fill="#2F5D50" stroke="#22463C" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M140 72l14 8" stroke="#22463C" stroke-width="4" stroke-linecap="round"/>
+  <rect x="104" y="90" width="22" height="16" fill="#2F5D50" stroke="#22463C" stroke-width="4"/>
+  <path d="M96 106h38l8 22v62H88v-62z" fill="#7FC4B6" stroke="#22463C" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="100" y="140" width="30" height="30" rx="5" fill="#FBF7F1"/>
+  <path d="M108 155l5 5 9-10" fill="none" stroke="#2F5D50" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#7FC4B6"><circle cx="164" cy="68" r="4"/><circle cx="176" cy="80" r="3"/><circle cx="172" cy="58" r="3"/></g>
+  <!-- botella de detergente -->
+  <rect x="210" y="70" width="26" height="18" rx="4" fill="#E2A93B" stroke="#7D5A10" stroke-width="4"/>
+  <path d="M200 88h56c10 0 16 8 16 18v84h-88v-84c0-10 6-18 16-18z" fill="#3B8193" stroke="#1F4B57" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M254 102a14 14 0 0 1 0 28" fill="none" stroke="#1F4B57" stroke-width="5"/>
+  <rect x="196" y="128" width="50" height="38" rx="6" fill="#FBF7F1"/>
+  <path d="M212 136c6 8 10 12 10 18a10 10 0 0 1-20 0c0-6 4-10 10-18z" fill="#3B8193"/>
+  <!-- jabón -->
+  <rect x="290" y="156" width="74" height="34" rx="12" fill="#F2B8C6" stroke="#A94F2B" stroke-width="5"/>
+  <rect x="304" y="166" width="46" height="8" rx="4" fill="#FFFFFF" opacity="0.6"/>
+  <!-- burbujas -->
+  <g fill="#FFFFFF" stroke="#7FC4B6" stroke-width="3">
+    <circle cx="316" cy="128" r="16"/>
+    <circle cx="346" cy="112" r="10"/>
+    <circle cx="300" cy="96" r="8"/>
+    <circle cx="336" cy="80" r="6"/>
+  </g>
+</svg>

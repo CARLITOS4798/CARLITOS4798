@@ -1,0 +1,4 @@
+Guarda aquí las fotos de los productos (por ejemplo: empanadas.jpg).
+Luego, en src/data/negocios.js, escribe en el producto:
+    imagen: '/imagenes/productos/empanadas.jpg',
+Consejo: usa nombres sin espacios ni tildes, y fotos de menos de 500 KB.
