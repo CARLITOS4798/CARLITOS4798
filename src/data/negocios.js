@@ -46,6 +46,8 @@
 //                (si no tiene, aparece en "Otros productos")
 //    disponibles número de unidades en existencia, ej. 3      (opcional)
 //                (0 → dice "Agotado"; si no lo pones, no se muestra nada)
+//    genero      'mujer', 'hombre' o 'unisex' (opcional). Si algún producto lo
+//                tiene, la página muestra el filtro "Para: Mujer / Hombre"
 //    insignia    sello corto sobre la foto, ej. 'La primera de la casa' (opcional)
 //    destacado   true → también aparece en "Productos destacados" del inicio
 //    demo        true → producto de EJEMPLO (muestra el sello "Demostración").
@@ -68,7 +70,14 @@ const DATOS = [
     ],
     productos: [
       // --- Sándwiches ---
-      { id: 'sandwich-queso-jamon', seccion: 'sandwiches', nombre: 'Sándwich de queso y jamón', precio: '$ 2.000', destacado: true },
+      {
+        id: 'sandwich-queso-mortadela',
+        seccion: 'sandwiches',
+        nombre: 'Sándwich de queso y mortadela',
+        precio: '$ 2.000',
+        imagen: '/imagenes/productos/apetitivos/sandwich-de-queso-y-mortadela.jpg',
+        destacado: true,
+      },
       { id: 'sandwich-2', seccion: 'sandwiches', nombre: '', precio: '' },
       { id: 'sandwich-3', seccion: 'sandwiches', nombre: '', precio: '' },
       { id: 'sandwich-4', seccion: 'sandwiches', nombre: '', precio: '' },
@@ -82,7 +91,13 @@ const DATOS = [
         insignia: 'La primera de la casa',
         destacado: true,
       },
-      { id: 'jugo-mora', seccion: 'bebidas', nombre: 'Jugo de mora', destacado: true },
+      {
+        id: 'jugo-mora',
+        seccion: 'bebidas',
+        nombre: 'Jugo de mora',
+        imagen: '/imagenes/productos/apetitivos/jugo-de-mora.jpg',
+        destacado: true,
+      },
       { id: 'jugo-maracuya', seccion: 'bebidas', nombre: 'Jugo de maracuyá' },
       { id: 'jugo-guayaba', seccion: 'bebidas', nombre: 'Jugo de guayaba' },
     ],
@@ -119,22 +134,45 @@ const DATOS = [
       },
     ],
     productos: [
-      { id: 'demo-1', seccion: 'natura', nombre: 'Perfume de ejemplo', disponibles: 3, destacado: true, demo: true },
-      { id: 'demo-2', seccion: 'natura', nombre: 'Crema de ejemplo', disponibles: 1, demo: true },
-      { id: 'demo-3', seccion: 'esika', nombre: 'Perfume de ejemplo', disponibles: 2, destacado: true, demo: true },
-      { id: 'demo-4', seccion: 'esika', nombre: 'Labial de ejemplo', disponibles: 0, demo: true },
-      { id: 'demo-5', seccion: 'yanbal', nombre: 'Perfume de ejemplo', disponibles: 4, demo: true },
-      { id: 'demo-6', seccion: 'yanbal', nombre: 'Crema de ejemplo', disponibles: 2, demo: true },
-      // Ejemplo de un producto real de revista (quita las // para usarlo):
-      // {
-      //   id: 'natura-kaiak',
-      //   seccion: 'natura',
-      //   nombre: 'Kaiak Clásico 100 ml',
-      //   descripcion: 'Escribe aquí la descripción.',
-      //   precio: '$ 0.000',
-      //   disponibles: 2,
-      //   imagen: '/imagenes/productos/natura-kaiak.jpg',
-      // },
+      // genero: 'mujer', 'hombre' o 'unisex' (unisex sale en los dos filtros)
+      // disponibles: cuántas unidades hay (ej. disponibles: 2)
+
+      // --- Natura ---
+      { id: 'kaiak-clasico-fem', seccion: 'natura', genero: 'mujer', nombre: 'Kaiak Clásico femenino', descripcion: 'Eau de toilette.', imagen: '/imagenes/productos/perfumes/natura/eau-de-toilette-kaiak-clasico-femenino.jpg', destacado: true },
+      { id: 'kaiak-aventura-fem', seccion: 'natura', genero: 'mujer', nombre: 'Kaiak Aventura femenino', imagen: '/imagenes/productos/perfumes/natura/kaiak-aventura-femenino.jpg' },
+      { id: 'humor-meu-primeiro', seccion: 'natura', genero: 'mujer', nombre: 'Humor Meu Primeiro 75 ml', imagen: '/imagenes/productos/perfumes/natura/perfume-meu-primeiro-humor-natura-75-ml.jpg' },
+      { id: 'aguas-frambuesa', seccion: 'natura', genero: 'mujer', nombre: 'Colonia Aguas Frambuesa 150 ml', imagen: '/imagenes/productos/perfumes/natura/colonia-aguas-frambuesa-150ml.jpg' },
+      { id: 'tododia-cereza', seccion: 'natura', genero: 'mujer', nombre: 'Body Splash Tododia Cereza Negra y Praliné 200 ml', imagen: '/imagenes/productos/perfumes/natura/body-splash-tododia-cereza-negra-y-praline-natura-200-ml.jpg' },
+      { id: 'kaiak-clasico-masc', seccion: 'natura', genero: 'hombre', nombre: 'Kaiak Clásico masculino', descripcion: 'Eau de toilette.', imagen: '/imagenes/productos/perfumes/natura/eau-de-toilette-kaiak-clasico-masculino.jpg', destacado: true },
+      { id: 'kaiak-aventura-masc', seccion: 'natura', genero: 'hombre', nombre: 'Kaiak Aventura masculino 100 ml', imagen: '/imagenes/productos/perfumes/natura/perfume-kaiak-aventura-masculino-natura-100-ml.jpg' },
+      { id: 'kaiak-urbe-masc', seccion: 'natura', genero: 'hombre', nombre: 'Kaiak Urbe masculino 100 ml', imagen: '/imagenes/productos/perfumes/natura/perfume-kaiak-urbe-masculino-natura-100-ml.jpg' },
+      { id: 'ekos-pitanga', seccion: 'natura', genero: 'unisex', nombre: 'Frescor Ekos Pitanga 150 ml', imagen: '/imagenes/productos/perfumes/natura/frescor-ekos-pitanga-150-ml-natura.jpg' },
+      { id: 'crema-cupuacu', seccion: 'natura', genero: 'unisex', nombre: 'Crema Ekos Cupuaçu', imagen: '/imagenes/productos/perfumes/natura/crema-cupuacu.jpg' },
+      { id: 'tododia-fresa-vainilla', seccion: 'natura', genero: 'unisex', nombre: 'Hidratante corporal Tododia Fresa y Vainilla Dorada 400 ml', imagen: '/imagenes/productos/perfumes/natura/hidratante-corporal-tododia-400ml-aroma-a-ti-fresa-y-vainilla-dorada.jpg' },
+      { id: 'lumina-anticaida', seccion: 'natura', genero: 'unisex', nombre: 'Lumina repuesto shampoo anticaída 300 ml', imagen: '/imagenes/productos/perfumes/natura/lumina-repuesto-shampoo-anticaida-300ml.jpg' },
+      { id: 'lumina-nutritivo', seccion: 'natura', genero: 'unisex', nombre: 'Lumina repuesto shampoo nutritivo (cabello seco)', imagen: '/imagenes/productos/perfumes/natura/repuesto-shampoo-nutritivo-lumina-cabello-seco.jpg' },
+      { id: 'lumina-liso', seccion: 'natura', genero: 'unisex', nombre: 'Lumina Restauración y Liso Prolongado', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-restauracion-e-liso-prolongado.jpg' },
+      { id: 'lumina-spray', seccion: 'natura', genero: 'unisex', nombre: 'Lumina spray de aminoácidos (pre-secado)', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-spray-de-aminoacidos-pre-secagem.jpg' },
+
+      // --- Ésika ---
+      { id: 'vibranza', seccion: 'esika', genero: 'mujer', nombre: 'Perfume Vibranza', imagen: '/imagenes/productos/perfumes/esika/vibranza-perfume-mujer.jpg', destacado: true },
+      { id: 'mithyka', seccion: 'esika', genero: 'mujer', nombre: 'Perfume Mithyka', imagen: '/imagenes/productos/perfumes/esika/perfume-mujer-mithyka.jpg' },
+      { id: 'expression', seccion: 'esika', genero: 'mujer', nombre: 'Perfume Expression', imagen: '/imagenes/productos/perfumes/esika/perfume-expression-mujer.jpg' },
+      { id: 'fantasia-azul', seccion: 'esika', genero: 'mujer', nombre: 'Perfume Fantasía Azul Infinito', imagen: '/imagenes/productos/perfumes/esika/perfume-fantasia-azul-infinito-mujer.jpg' },
+      { id: 'roll-on-imagenes', seccion: 'esika', genero: 'mujer', nombre: 'Desodorante roll-on Imágenes', imagen: '/imagenes/productos/perfumes/esika/desodorante-imagenes-roll-on.jpg' },
+      { id: 'roll-on-expression', seccion: 'esika', genero: 'mujer', nombre: 'Desodorante roll-on Expression', imagen: '/imagenes/productos/perfumes/esika/desodorante-roll-on-expression.jpg' },
+      { id: 'roll-on-fantasia-azul', seccion: 'esika', genero: 'mujer', nombre: 'Desodorante roll-on Fantasía Azul Infinito', imagen: '/imagenes/productos/perfumes/esika/desodorante-roll-on-fantasia-azul-infinito.jpg' },
+      { id: 'blue-intense', seccion: 'esika', genero: 'hombre', nombre: 'Perfume Blue Intense', imagen: '/imagenes/productos/perfumes/esika/blue-intense-hombre.jpg' },
+      { id: 'dorsay', seccion: 'esika', genero: 'hombre', nombre: "Perfume D'Orsay 90 ml", imagen: '/imagenes/productos/perfumes/esika/perfume-dorsay-de-esika-90-ml.jpg' },
+      { id: 'nitro', seccion: 'esika', genero: 'hombre', nombre: 'Colonia Nitro Cyzone 100 ml', imagen: '/imagenes/productos/perfumes/esika/colonia-nitro-100-ml-cyzone-hombre.jpg' },
+      { id: 'roll-on-dorsay', seccion: 'esika', genero: 'hombre', nombre: "Desodorante roll-on D'Orsay", imagen: '/imagenes/productos/perfumes/esika/desodorante-roll-on-dorsay.jpg' },
+      { id: 'roll-on-winner', seccion: 'esika', genero: 'hombre', nombre: 'Desodorante roll-on Winner Sport', descripcion: 'Sin alcohol.', imagen: '/imagenes/productos/perfumes/esika/esika-winner-sport-desodorante-roll-on-sin-alcohol.jpg' },
+
+      // --- Yanbal ---
+      { id: 'ccori', seccion: 'yanbal', genero: 'mujer', nombre: 'Perfume Ccori 50 ml', imagen: '/imagenes/productos/perfumes/yanbal/perfume-ccori-50ml-mujer.jpg' },
+      { id: 'ohm-azul', seccion: 'yanbal', genero: 'hombre', nombre: 'Perfume Ohm (azul)', imagen: '/imagenes/productos/perfumes/yanbal/ohm-perfume-hombre-azul.jpg' },
+      { id: 'ohm-negro', seccion: 'yanbal', genero: 'hombre', nombre: 'Perfume Ohm (negro)', imagen: '/imagenes/productos/perfumes/yanbal/ohm-perfume-hombre-negro.jpg' },
+      { id: 'solo', seccion: 'yanbal', genero: 'hombre', nombre: 'Perfume Solo 80 ml', imagen: '/imagenes/productos/perfumes/yanbal/perfume-solo-de-yanbal-80-ml-hombre.jpg' },
     ],
   },
   {
@@ -147,28 +185,49 @@ const DATOS = [
     logo: '',
     tono: 'verde',
     secciones: [
-      { id: 'ropa', nombre: 'Lavado de ropa' },
-      { id: 'hogar', nombre: 'Limpieza del hogar' },
+      { id: 'detergentes', nombre: 'Detergentes' },
+      { id: 'suavizantes', nombre: 'Suavizantes' },
+      { id: 'blanqueadores', nombre: 'Blanqueadores (cloro)' },
+      { id: 'limpiapisos', nombre: 'Limpiapisos' },
+      { id: 'ambientadores', nombre: 'Ambientadores' },
       { id: 'personal', nombre: 'Cuidado personal' },
       { id: 'bebes', nombre: 'Bebés' },
     ],
     productos: [
-      // --- Lavado de ropa ---
-      { id: 'fab-pequeno', seccion: 'ropa', nombre: 'Fab pequeño' },
-      { id: 'fab-1kg', seccion: 'ropa', nombre: 'Fab mediano 1 kg', destacado: true },
-      { id: 'fab-grande', seccion: 'ropa', nombre: 'Fab grande' },
-      { id: 'suavitel', seccion: 'ropa', nombre: 'Suavitel' },
-      // --- Limpieza del hogar ---
-      { id: 'cloro-bolsa', seccion: 'hogar', nombre: 'Cloro en bolsa' },
-      { id: 'cloro-tarro', seccion: 'hogar', nombre: 'Cloro en tarro' },
-      { id: 'fabuloso-bolsa', seccion: 'hogar', nombre: 'Fabuloso en bolsa', destacado: true },
-      { id: 'fabuloso-tarro', seccion: 'hogar', nombre: 'Fabuloso en tarro' },
-      {
-        id: 'ambientadores',
-        seccion: 'hogar',
-        nombre: 'Ambientadores',
-        descripcion: 'Varios aromas disponibles. Pregunta por tu favorito.',
-      },
+      // --- Detergentes ---
+      { id: 'bonaropa-1kg', seccion: 'detergentes', nombre: 'Detergente Bonaropa 1 kg', imagen: '/imagenes/productos/aseo/detergente-bonaropa-1kg.jpg', destacado: true },
+      { id: 'dersa-125', seccion: 'detergentes', nombre: 'Detergente Dersa 125 g', imagen: '/imagenes/productos/aseo/detergente-dersa-125g.jpg' },
+      { id: 'dersa-250', seccion: 'detergentes', nombre: 'Detergente Dersa 250 g', imagen: '/imagenes/productos/aseo/detergente-dersa-250g.jpg' },
+      { id: 'dersa-500', seccion: 'detergentes', nombre: 'Detergente Dersa 500 g', imagen: '/imagenes/productos/aseo/detergente-dersa-500g.jpg' },
+      { id: 'fab-pequeno', seccion: 'detergentes', nombre: 'Fab pequeño' },
+      { id: 'fab-1kg', seccion: 'detergentes', nombre: 'Fab mediano 1 kg' },
+      { id: 'fab-grande', seccion: 'detergentes', nombre: 'Fab grande' },
+      // --- Suavizantes ---
+      { id: 'aromatel-floral', seccion: 'suavizantes', nombre: 'Suavizante Aromatel Floral 180 ml', imagen: '/imagenes/productos/aseo/suavizante-aromatel-floral-180-ml.jpg' },
+      { id: 'aromatel-floral-10x', seccion: 'suavizantes', nombre: 'Suavizante Aromatel Floral 10X 180 ml', imagen: '/imagenes/productos/aseo/suavizante-aromatel-floral-10x-180-ml.jpg' },
+      { id: 'aromatel-mandarina', seccion: 'suavizantes', nombre: 'Suavizante Aromatel Mandarina 180 ml', imagen: '/imagenes/productos/aseo/suavizante-aromatel-mandarina-180-ml.jpg' },
+      { id: 'aromatel-manzana', seccion: 'suavizantes', nombre: 'Suavizante Aromatel Manzana 180 ml', imagen: '/imagenes/productos/aseo/suavizante-aromatel-manzana-180-ml.jpg' },
+      { id: 'bonaropa-suav-floral', seccion: 'suavizantes', nombre: 'Suavizante Bonaropa Floral 1000 ml', imagen: '/imagenes/productos/aseo/suavizante-bonaropa-floral-x-1000-ml.jpg' },
+      { id: 'bonaropa-suav-manzana', seccion: 'suavizantes', nombre: 'Suavizante Bonaropa Manzana 1000 ml', imagen: '/imagenes/productos/aseo/suavizante-bonaropa-manzana-x-1000-ml.jpg' },
+      { id: 'bonaropa-suav-xtra', seccion: 'suavizantes', nombre: 'Suavizante Bonaropa Xtra Perfume 1000 ml', imagen: '/imagenes/productos/aseo/suavizante-bonaropa-xtra-perfume-x-1000-ml.jpg' },
+      { id: 'suavitel', seccion: 'suavizantes', nombre: 'Suavitel' },
+      // --- Blanqueadores (cloro) ---
+      { id: 'blancox-500', seccion: 'blanqueadores', nombre: 'Blanqueador Blancox 500 ml', imagen: '/imagenes/productos/aseo/blanqueador-blancox-500ml.jpg' },
+      { id: 'brilla-king-2000', seccion: 'blanqueadores', nombre: 'Blanqueador Brilla King 2000 ml', imagen: '/imagenes/productos/aseo/blanqueador-brilla-king-2000ml.jpg' },
+      { id: 'cloro-bolsa', seccion: 'blanqueadores', nombre: 'Cloro en bolsa' },
+      // --- Limpiapisos ---
+      { id: 'fabuloso-lavanda', seccion: 'limpiapisos', nombre: 'Fabuloso Lavanda 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-lavanda-180ml.jpg', destacado: true },
+      { id: 'fabuloso-floral', seccion: 'limpiapisos', nombre: 'Fabuloso Floral 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-floral-180ml.jpg' },
+      { id: 'fabuloso-bebe', seccion: 'limpiapisos', nombre: 'Fabuloso Bebé 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-bebe-180ml.jpg' },
+      { id: 'fabuloso-desinfectante', seccion: 'limpiapisos', nombre: 'Fabuloso Desinfectante 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-desinfectante-180ml.jpg' },
+      { id: 'fabuloso-tarro', seccion: 'limpiapisos', nombre: 'Fabuloso en tarro' },
+      { id: 'brilla-king-floral', seccion: 'limpiapisos', nombre: 'Limpiador Brilla King Floral 1 L', imagen: '/imagenes/productos/aseo/limpiador-floral-brilla-king-1-l.jpg' },
+      { id: 'brilla-king-lavanda', seccion: 'limpiapisos', nombre: 'Limpiador Brilla King Lavanda 1 L', imagen: '/imagenes/productos/aseo/limpiador-lavanda-brilla-king-1-l.jpg' },
+      { id: 'brilla-king-manzana', seccion: 'limpiapisos', nombre: 'Limpiador Brilla King Manzana Canela 1 L', imagen: '/imagenes/productos/aseo/limpiador-manzana-canela-brilla-king-1-l.jpg' },
+      // --- Ambientadores ---
+      { id: 'hosh-lavanda', seccion: 'ambientadores', nombre: 'Ambientador Hosh Lavanda 400 ml', imagen: '/imagenes/productos/aseo/ambientador-lavanda-hosh-400-ml.jpg' },
+      { id: 'hosh-manzana', seccion: 'ambientadores', nombre: 'Ambientador Hosh Manzana Canela 360 ml', imagen: '/imagenes/productos/aseo/ambientador-en-aerosol-manzana-canela-hosh-360-ml.jpg' },
+      { id: 'hosh-desinfectante', seccion: 'ambientadores', nombre: 'Hosh desinfectante y elimina olores 400 ml', imagen: '/imagenes/productos/aseo/desinfectante-y-elimina-olores-hosh-400-ml.jpg' },
       // --- Cuidado personal ---
       { id: 'jabon-bano', seccion: 'personal', nombre: 'Jabones de baño' },
       { id: 'aceite-corporal', seccion: 'personal', nombre: 'Aceite para el cuerpo' },

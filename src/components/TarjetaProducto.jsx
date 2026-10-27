@@ -1,5 +1,7 @@
 import { buscarSeccion } from '../data/negocios'
 
+const NOMBRE_GENERO = { mujer: 'Mujer', hombre: 'Hombre', unisex: 'Unisex' }
+
 // Ícono que se muestra mientras el producto no tenga foto.
 function IconoFoto() {
   return (
@@ -45,7 +47,9 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
       <div className="tarjeta-producto__cuerpo">
         {(mostrarNegocio || seccion) && (
           <p className="tarjeta-producto__negocio">
-            {[mostrarNegocio && negocio.nombre, seccion?.nombre].filter(Boolean).join(' · ')}
+            {[mostrarNegocio && negocio.nombre, seccion?.nombre, NOMBRE_GENERO[producto.genero]]
+              .filter(Boolean)
+              .join(' · ')}
           </p>
         )}
         <h3>{producto.nombre}</h3>
