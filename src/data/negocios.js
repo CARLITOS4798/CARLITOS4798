@@ -151,13 +151,13 @@ const DATOS = [
       { id: 'kaiak-clasico-masc', seccion: 'natura', genero: 'hombre', nombre: 'Kaiak Clásico masculino', descripcion: 'Eau de toilette.', imagen: '/imagenes/productos/perfumes/natura/eau-de-toilette-kaiak-clasico-masculino.jpg', destacado: true },
       { id: 'kaiak-aventura-masc', seccion: 'natura', genero: 'hombre', nombre: 'Kaiak Aventura masculino 100 ml', imagen: '/imagenes/productos/perfumes/natura/perfume-kaiak-aventura-masculino-natura-100-ml.jpg' },
       { id: 'kaiak-urbe-masc', seccion: 'natura', genero: 'hombre', nombre: 'Kaiak Urbe masculino 100 ml', imagen: '/imagenes/productos/perfumes/natura/perfume-kaiak-urbe-masculino-natura-100-ml.jpg' },
-      { id: 'ekos-pitanga', seccion: 'natura', genero: 'unisex', nombre: 'Frescor Ekos Pitanga 150 ml', imagen: '/imagenes/productos/perfumes/natura/frescor-ekos-pitanga-150-ml-natura.jpg' },
-      { id: 'crema-cupuacu', seccion: 'natura', genero: 'unisex', nombre: 'Crema Ekos Cupuaçu', imagen: '/imagenes/productos/perfumes/natura/crema-cupuacu.jpg' },
-      { id: 'tododia-fresa-vainilla', seccion: 'natura', genero: 'unisex', nombre: 'Hidratante corporal Tododia Fresa y Vainilla Dorada 400 ml', imagen: '/imagenes/productos/perfumes/natura/hidratante-corporal-tododia-400ml-aroma-a-ti-fresa-y-vainilla-dorada.jpg' },
-      { id: 'lumina-anticaida', seccion: 'natura', genero: 'unisex', nombre: 'Lumina repuesto shampoo anticaída 300 ml', imagen: '/imagenes/productos/perfumes/natura/lumina-repuesto-shampoo-anticaida-300ml.jpg' },
+      { id: 'ekos-pitanga', seccion: 'natura', genero: 'mujer', nombre: 'Frescor Ekos Pitanga 150 ml', imagen: '/imagenes/productos/perfumes/natura/frescor-ekos-pitanga-150-ml-natura.jpg' },
+      { id: 'crema-cupuacu', seccion: 'natura', genero: 'mujer', nombre: 'Crema Ekos Cupuaçu', imagen: '/imagenes/productos/perfumes/natura/crema-cupuacu.jpg' },
+      { id: 'tododia-fresa-vainilla', seccion: 'natura', genero: 'mujer', nombre: 'Hidratante corporal Tododia Fresa y Vainilla Dorada 400 ml', imagen: '/imagenes/productos/perfumes/natura/hidratante-corporal-tododia-400ml-aroma-a-ti-fresa-y-vainilla-dorada.jpg' },
+      { id: 'lumina-anticaida', seccion: 'natura', genero: 'mujer', nombre: 'Lumina repuesto shampoo anticaída 300 ml', imagen: '/imagenes/productos/perfumes/natura/lumina-repuesto-shampoo-anticaida-300ml.jpg' },
       { id: 'lumina-nutritivo', seccion: 'natura', genero: 'unisex', nombre: 'Lumina repuesto shampoo nutritivo (cabello seco)', imagen: '/imagenes/productos/perfumes/natura/repuesto-shampoo-nutritivo-lumina-cabello-seco.jpg' },
       { id: 'lumina-liso', seccion: 'natura', genero: 'unisex', nombre: 'Lumina Restauración y Liso Prolongado', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-restauracion-e-liso-prolongado.jpg' },
-      { id: 'lumina-spray', seccion: 'natura', genero: 'unisex', nombre: 'Lumina spray de aminoácidos (pre-secado)', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-spray-de-aminoacidos-pre-secagem.jpg' },
+      { id: 'lumina-spray', seccion: 'natura', genero: 'mujer', nombre: 'Lumina spray de aminoácidos (pre-secado)', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-spray-de-aminoacidos-pre-secagem.jpg' },
 
       // --- Ésika ---
       { id: 'vibranza', seccion: 'esika', genero: 'mujer', nombre: 'Perfume Vibranza', imagen: '/imagenes/productos/perfumes/esika/vibranza-perfume-mujer.jpg', destacado: true },
