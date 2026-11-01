@@ -1,4 +1,7 @@
 import { buscarSeccion, enlaceWhatsApp, estadoDisponibilidad } from '../data/negocios'
+import { maximoPedido, useCarrito } from '../carrito/carrito'
+import ContadorCantidad from '../carrito/ContadorCantidad'
+import IconoCarrito from '../carrito/IconoCarrito'
 import IconoWhatsApp from './IconoWhatsApp'
 
 const NOMBRE_GENERO = { mujer: 'Mujer', hombre: 'Hombre', unisex: 'Unisex' }
@@ -31,15 +34,12 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
   const seccion = buscarSeccion(negocio, producto.seccion)
   const estado = estadoDisponibilidad(producto)
   const agotado = estado === 'agotado'
-  // Agotado: en vez de pedir, se pregunta cuándo vuelve a llegar.
-  const pedido =
-    !producto.demo &&
-    enlaceWhatsApp(
-      negocio,
-      agotado
-        ? `Hola, ¿cuándo vuelve a llegar ${producto.nombre} (${negocio.nombre})?`
-        : `Hola, quiero pedir: ${producto.nombre} (${negocio.nombre}). ¿Está disponible?`,
-    )
+  const carrito = useCarrito()
+  const enCarrito = carrito.cantidadDe(negocio.id, producto.id)
+  const cambiar = (cantidad) => carrito.cambiarCantidad(negocio.id, producto.id, cantidad)
+  // Agotado: en vez de agregar al carrito, se pregunta por WhatsApp cuándo vuelve a llegar.
+  const preguntar =
+    agotado && enlaceWhatsApp(negocio, `Hola, ¿cuándo vuelve a llegar ${producto.nombre} (${negocio.nombre})?`)
   return (
     <article
       className={`tarjeta-producto tono-${negocio.tono || 'verde'} ${agotado ? 'tarjeta-producto--agotado' : ''}`}
@@ -80,16 +80,41 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
           <p className="tarjeta-producto__precio">{producto.precio || 'Precio por definir'}</p>
         </div>
         <Disponibles estado={estado} cantidad={producto.disponibles} />
-        {pedido && (
+        {preguntar ? (
           <a
-            href={pedido}
-            className={`boton boton--pequeno ${agotado ? 'boton--secundario' : 'boton--whatsapp'}`}
+            href={preguntar}
+            className="boton boton--pequeno boton--secundario tarjeta-producto__accion"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${agotado ? 'Preguntar cuándo llega' : 'Pedir'} ${producto.nombre} por WhatsApp`}
+            aria-label={`Preguntar por WhatsApp cuándo llega ${producto.nombre}`}
           >
-            <IconoWhatsApp /> {agotado ? 'Preguntar cuándo llega' : 'Pedir por WhatsApp'}
+            <IconoWhatsApp /> Preguntar cuándo llega
           </a>
+        ) : (
+          !producto.demo &&
+          !agotado &&
+          (enCarrito > 0 ? (
+            <div className="tarjeta-producto__accion tarjeta-producto__en-carrito">
+              <ContadorCantidad
+                cantidad={enCarrito}
+                maximo={maximoPedido(producto)}
+                onCambio={cambiar}
+                nombre={producto.nombre}
+              />
+              <button type="button" className="enlace-carrito" onClick={carrito.abrir}>
+                Ver carrito
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="boton boton--pequeno boton--agregar tarjeta-producto__accion"
+              onClick={() => cambiar(1)}
+              aria-label={`Agregar ${producto.nombre} al carrito`}
+            >
+              <IconoCarrito /> Agregar al carrito
+            </button>
+          ))
         )}
       </div>
     </article>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useCarrito } from '../carrito/carrito'
+import IconoCarrito from '../carrito/IconoCarrito'
 import { MARCA } from '../config/marca'
 import Logo from './Logo'
 
@@ -9,6 +11,7 @@ const ENLACES = [
 ]
 
 function Navbar({ pagina }) {
+  const carrito = useCarrito()
   const [menuAbierto, setMenuAbierto] = useState(false)
   const [seccionVisible, setSeccionVisible] = useState('inicio')
   // En la página de un negocio se resalta "Nuestros negocios".
@@ -50,6 +53,19 @@ function Navbar({ pagina }) {
           <span>{MARCA.nombre}</span>
         </a>
 
+        <div className="navbar__acciones">
+        <button
+          type="button"
+          className="boton-carrito"
+          onClick={() => {
+            cerrarMenu()
+            carrito.abrir()
+          }}
+          aria-label={`Ver carrito (${carrito.totalUnidades} ${carrito.totalUnidades === 1 ? 'producto' : 'productos'})`}
+        >
+          <IconoCarrito />
+          {carrito.totalUnidades > 0 && <span className="boton-carrito__cantidad">{carrito.totalUnidades}</span>}
+        </button>
         <button
           type="button"
           className="navbar__toggle"
@@ -64,6 +80,7 @@ function Navbar({ pagina }) {
             <span />
           </span>
         </button>
+        </div>
 
         <nav
           id="menu-principal"

@@ -6,6 +6,8 @@ import ProductosDestacados from './components/ProductosDestacados'
 import PaginaNegocio from './components/PaginaNegocio'
 import PiePagina from './components/PiePagina'
 import { useRuta } from './hooks/useRuta'
+import BotonCarritoFlotante from './carrito/BotonCarritoFlotante'
+import PanelCarrito from './carrito/PanelCarrito'
 import './App.css'
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
         )}
       </main>
       <PiePagina />
+      <BotonCarritoFlotante />
+      <PanelCarrito />
     </>
   )
 }
