@@ -205,9 +205,6 @@ const DATOS = [
       { id: 'dersa-125', seccion: 'detergentes', nombre: 'Detergente Dersa 125 g', imagen: '/imagenes/productos/aseo/detergente-dersa-125g.jpg' },
       { id: 'dersa-250', seccion: 'detergentes', nombre: 'Detergente Dersa 250 g', imagen: '/imagenes/productos/aseo/detergente-dersa-250g.jpg' },
       { id: 'dersa-500', seccion: 'detergentes', nombre: 'Detergente Dersa 500 g', imagen: '/imagenes/productos/aseo/detergente-dersa-500g.jpg' },
-      { id: 'fab-pequeno', seccion: 'detergentes', nombre: 'Fab pequeño' },
-      { id: 'fab-1kg', seccion: 'detergentes', nombre: 'Fab mediano 1 kg' },
-      { id: 'fab-grande', seccion: 'detergentes', nombre: 'Fab grande' },
       // --- Suavizantes ---
       { id: 'aromatel-floral', seccion: 'suavizantes', nombre: 'Suavizante Aromatel Floral 180 ml', imagen: '/imagenes/productos/aseo/suavizante-aromatel-floral-180-ml.jpg' },
       { id: 'aromatel-floral-10x', seccion: 'suavizantes', nombre: 'Suavizante Aromatel Floral 10X 180 ml', imagen: '/imagenes/productos/aseo/suavizante-aromatel-floral-10x-180-ml.jpg' },
@@ -216,17 +213,14 @@ const DATOS = [
       { id: 'bonaropa-suav-floral', seccion: 'suavizantes', nombre: 'Suavizante Bonaropa Floral 1000 ml', imagen: '/imagenes/productos/aseo/suavizante-bonaropa-floral-x-1000-ml.jpg' },
       { id: 'bonaropa-suav-manzana', seccion: 'suavizantes', nombre: 'Suavizante Bonaropa Manzana 1000 ml', imagen: '/imagenes/productos/aseo/suavizante-bonaropa-manzana-x-1000-ml.jpg' },
       { id: 'bonaropa-suav-xtra', seccion: 'suavizantes', nombre: 'Suavizante Bonaropa Xtra Perfume 1000 ml', imagen: '/imagenes/productos/aseo/suavizante-bonaropa-xtra-perfume-x-1000-ml.jpg' },
-      { id: 'suavitel', seccion: 'suavizantes', nombre: 'Suavitel' },
       // --- Blanqueadores (cloro) ---
       { id: 'blancox-500', seccion: 'blanqueadores', nombre: 'Blanqueador Blancox 500 ml', imagen: '/imagenes/productos/aseo/blanqueador-blancox-500ml.jpg' },
       { id: 'brilla-king-2000', seccion: 'blanqueadores', nombre: 'Blanqueador Brilla King 2000 ml', imagen: '/imagenes/productos/aseo/blanqueador-brilla-king-2000ml.jpg' },
-      { id: 'cloro-bolsa', seccion: 'blanqueadores', nombre: 'Cloro en bolsa' },
       // --- Limpiapisos ---
       { id: 'fabuloso-lavanda', seccion: 'limpiapisos', nombre: 'Fabuloso Lavanda 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-lavanda-180ml.jpg', destacado: true },
       { id: 'fabuloso-floral', seccion: 'limpiapisos', nombre: 'Fabuloso Floral 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-floral-180ml.jpg' },
       { id: 'fabuloso-bebe', seccion: 'limpiapisos', nombre: 'Fabuloso Bebé 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-bebe-180ml.jpg' },
       { id: 'fabuloso-desinfectante', seccion: 'limpiapisos', nombre: 'Fabuloso Desinfectante 180 ml', imagen: '/imagenes/productos/aseo/limpia-pisos-fabuloso-desinfectante-180ml.jpg' },
-      { id: 'fabuloso-tarro', seccion: 'limpiapisos', nombre: 'Fabuloso en tarro' },
       { id: 'brilla-king-floral', seccion: 'limpiapisos', nombre: 'Limpiador Brilla King Floral 1 L', imagen: '/imagenes/productos/aseo/limpiador-floral-brilla-king-1-l.jpg' },
       { id: 'brilla-king-lavanda', seccion: 'limpiapisos', nombre: 'Limpiador Brilla King Lavanda 1 L', imagen: '/imagenes/productos/aseo/limpiador-lavanda-brilla-king-1-l.jpg' },
       { id: 'brilla-king-manzana', seccion: 'limpiapisos', nombre: 'Limpiador Brilla King Manzana Canela 1 L', imagen: '/imagenes/productos/aseo/limpiador-manzana-canela-brilla-king-1-l.jpg' },
