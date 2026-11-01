@@ -1,4 +1,4 @@
-import { buscarSeccion, enlaceWhatsApp } from '../data/negocios'
+import { buscarSeccion, enlaceWhatsApp, estadoDisponibilidad } from '../data/negocios'
 import IconoWhatsApp from './IconoWhatsApp'
 
 const NOMBRE_GENERO = { mujer: 'Mujer', hombre: 'Hombre', unisex: 'Unisex' }
@@ -14,26 +14,36 @@ function IconoFoto() {
   )
 }
 
-// Unidades en existencia. Solo aparece si el producto tiene el campo "disponibles".
-function Disponibles({ cantidad }) {
-  if (typeof cantidad !== 'number') return null
-  if (cantidad <= 0) return <span className="disponibles disponibles--agotado">Agotado</span>
-  return (
-    <span className="disponibles">
-      {cantidad} {cantidad === 1 ? 'disponible' : 'disponibles'}
-    </span>
-  )
+// Estado según las unidades: disponible, quedan pocas o agotado.
+// Solo aparece si el producto tiene el campo "disponibles".
+function Disponibles({ estado, cantidad }) {
+  if (!estado) return null
+  const unidades = `${cantidad} ${cantidad === 1 ? 'unidad' : 'unidades'}`
+  const texto = {
+    agotado: 'Agotado',
+    pocas: cantidad === 1 ? '¡Última unidad!' : `¡Quedan pocas! · ${unidades}`,
+    disponible: `Disponible · ${unidades}`,
+  }[estado]
+  return <span className={`disponibles disponibles--${estado}`}>{texto}</span>
 }
 
 function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
   const seccion = buscarSeccion(negocio, producto.seccion)
-  const agotado = producto.disponibles === 0
+  const estado = estadoDisponibilidad(producto)
+  const agotado = estado === 'agotado'
+  // Agotado: en vez de pedir, se pregunta cuándo vuelve a llegar.
   const pedido =
     !producto.demo &&
-    !agotado &&
-    enlaceWhatsApp(negocio, `Hola, quiero pedir: ${producto.nombre} (${negocio.nombre}). ¿Está disponible?`)
+    enlaceWhatsApp(
+      negocio,
+      agotado
+        ? `Hola, ¿cuándo vuelve a llegar ${producto.nombre} (${negocio.nombre})?`
+        : `Hola, quiero pedir: ${producto.nombre} (${negocio.nombre}). ¿Está disponible?`,
+    )
   return (
-    <article className={`tarjeta-producto tono-${negocio.tono || 'verde'}`}>
+    <article
+      className={`tarjeta-producto tono-${negocio.tono || 'verde'} ${agotado ? 'tarjeta-producto--agotado' : ''}`}
+    >
       <div className="tarjeta-producto__imagen">
         {producto.imagen ? (
           <img src={producto.imagen} alt={producto.nombre} loading="lazy" />
@@ -44,6 +54,7 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
           </>
         )}
         {producto.demo && <span className="sello-demo">Demostración</span>}
+        {agotado && <span className="sello-agotado">Agotado</span>}
         {producto.insignia && !producto.demo && (
           <span className="sello-insignia">
             <span aria-hidden="true">★</span> {producto.insignia}
@@ -67,17 +78,17 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
         </p>
         <div className="tarjeta-producto__pie">
           <p className="tarjeta-producto__precio">{producto.precio || 'Precio por definir'}</p>
-          <Disponibles cantidad={producto.disponibles} />
         </div>
+        <Disponibles estado={estado} cantidad={producto.disponibles} />
         {pedido && (
           <a
             href={pedido}
-            className="boton boton--whatsapp boton--pequeno"
+            className={`boton boton--pequeno ${agotado ? 'boton--secundario' : 'boton--whatsapp'}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Pedir ${producto.nombre} por WhatsApp`}
+            aria-label={`${agotado ? 'Preguntar cuándo llega' : 'Pedir'} ${producto.nombre} por WhatsApp`}
           >
-            <IconoWhatsApp /> Pedir por WhatsApp
+            <IconoWhatsApp /> {agotado ? 'Preguntar cuándo llega' : 'Pedir por WhatsApp'}
           </a>
         )}
       </div>

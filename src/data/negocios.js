@@ -47,8 +47,12 @@
 //    imagen      foto del producto                          (opcional)
 //    seccion     id de la sección a la que pertenece, ej. 'jugos'
 //                (si no tiene, aparece en "Otros productos")
-//    disponibles número de unidades en existencia, ej. 3      (opcional)
-//                (0 → dice "Agotado"; si no lo pones, no se muestra nada)
+//    disponibles número de unidades en existencia, ej. 5      (opcional)
+//                  4 o más → "Disponible · 5 unidades"
+//                  1 a 3   → "¡Quedan pocas! · 2 unidades" / "¡Última unidad!"
+//                  0       → "Agotado" (la foto se ve gris)
+//                Si no lo pones, no se muestra nada. El límite de "pocas"
+//                se cambia en POCAS_UNIDADES, al final de este archivo.
 //    genero      'mujer', 'hombre' o 'unisex' (opcional). Si algún producto lo
 //                tiene, la página muestra el filtro "Para: Mujer / Hombre"
 //    insignia    sello corto sobre la foto, ej. 'La primera de la casa' (opcional)
@@ -288,4 +292,16 @@ export const enlaceWhatsApp = (negocio, mensaje) => {
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
 
-export const buscarSeccion =(negocio, id) => negocio.secciones?.find((seccion) => seccion.id === id)
+// Con esta cantidad o menos, el producto dice "¡Quedan pocas!".
+export const POCAS_UNIDADES = 3
+
+// 'disponible', 'pocas', 'agotado', o null si el producto no lleva la cuenta de unidades.
+export const estadoDisponibilidad = (producto) => {
+  const cantidad = producto.disponibles
+  if (typeof cantidad !== 'number') return null
+  if (cantidad <= 0) return 'agotado'
+  if (cantidad <= POCAS_UNIDADES) return 'pocas'
+  return 'disponible'
+}
+
+export const buscarSeccion = (negocio, id) => negocio.secciones?.find((seccion) => seccion.id === id)
