@@ -185,7 +185,7 @@ const DATOS = [
     nombre: 'Variedades Jehová Nisi',
     categoria: 'Productos de aseo',
     descripcion:
-      'Productos de aseo para el hogar y el cuidado personal: detergentes, limpiadores, ambientadores, pañales y más.',
+      'Productos de aseo para el hogar: detergentes, suavizantes, cloro, limpiapisos y ambientadores.',
     imagen: '/imagenes/negocios/variedades.svg',
     logo: '',
     whatsapp: '301 590 4405',
@@ -196,8 +196,6 @@ const DATOS = [
       { id: 'blanqueadores', nombre: 'Blanqueadores (cloro)' },
       { id: 'limpiapisos', nombre: 'Limpiapisos' },
       { id: 'ambientadores', nombre: 'Ambientadores' },
-      { id: 'personal', nombre: 'Cuidado personal' },
-      { id: 'bebes', nombre: 'Bebés' },
     ],
     productos: [
       // --- Detergentes ---
@@ -228,19 +226,6 @@ const DATOS = [
       { id: 'hosh-lavanda', seccion: 'ambientadores', nombre: 'Ambientador Hosh Lavanda 400 ml', imagen: '/imagenes/productos/aseo/ambientador-lavanda-hosh-400-ml.jpg' },
       { id: 'hosh-manzana', seccion: 'ambientadores', nombre: 'Ambientador Hosh Manzana Canela 360 ml', imagen: '/imagenes/productos/aseo/ambientador-en-aerosol-manzana-canela-hosh-360-ml.jpg' },
       { id: 'hosh-desinfectante', seccion: 'ambientadores', nombre: 'Hosh desinfectante y elimina olores 400 ml', imagen: '/imagenes/productos/aseo/desinfectante-y-elimina-olores-hosh-400-ml.jpg' },
-      // --- Cuidado personal ---
-      { id: 'jabon-bano', seccion: 'personal', nombre: 'Jabones de baño' },
-      { id: 'aceite-corporal', seccion: 'personal', nombre: 'Aceite para el cuerpo' },
-      { id: 'ego', seccion: 'personal', nombre: 'Ego para el cabello' },
-      { id: 'nosotras', seccion: 'personal', nombre: 'Toallas higiénicas Nosotras' },
-      // --- Bebés ---
-      {
-        id: 'panales',
-        seccion: 'bebes',
-        nombre: 'Pañales para niño',
-        descripcion: 'Desde la etapa 3 hasta la etapa 5.',
-        destacado: true,
-      },
       // --- Espacios libres: escribe el nombre y elige su sección ---
       { id: 'aseo-libre-1', seccion: '', nombre: '', precio: '' },
       { id: 'aseo-libre-2', seccion: '', nombre: '', precio: '' },
