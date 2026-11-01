@@ -66,7 +66,7 @@ const DATOS = [
       'Sándwiches preparados al momento, jugos naturales de fruta y nuestra chicha de arroz, con la que empezó todo.',
     imagen: '/imagenes/negocios/apetitivos.svg',
     logo: '', // ej. '/imagenes/negocios/apetitivos-logo.png'
-    whatsapp: '', // ✏️ ej. '300 123 4567'
+    whatsapp: '301 590 4405',
     tono: 'calido',
     secciones: [
       { id: 'sandwiches', nombre: 'Sándwiches', descripcion: 'Preparados al momento.' },
@@ -115,7 +115,7 @@ const DATOS = [
       'Perfumes, cremas, maquillaje y cuidado personal por catálogo: Natura, Ésika y Yanbal. Mira los productos de cada revista y haz tu pedido.',
     imagen: '/imagenes/negocios/perfumes.svg',
     logo: '',
-    whatsapp: '', // ✏️ ej. '300 123 4567'
+    whatsapp: '301 590 4405',
     tono: 'ciruela',
     // Una sección por revista.  enlace → revista digital de la campaña actual (opcional)
     secciones: [
@@ -188,7 +188,7 @@ const DATOS = [
       'Productos de aseo para el hogar y el cuidado personal: detergentes, limpiadores, ambientadores, pañales y más.',
     imagen: '/imagenes/negocios/variedades.svg',
     logo: '',
-    whatsapp: '', // ✏️ ej. '300 123 4567'
+    whatsapp: '301 590 4405',
     tono: 'verde',
     secciones: [
       { id: 'detergentes', nombre: 'Detergentes' },
@@ -267,7 +267,7 @@ const DATOS = [
       'Hielo para tus bebidas, neveras y celebraciones. Pídelo en la cantidad que necesites.',
     imagen: '/imagenes/negocios/hielo.svg',
     logo: '',
-    whatsapp: '', // ✏️ ej. '300 123 4567'
+    whatsapp: '301 590 4405',
     tono: 'hielo',
     productos: [
       { id: 'bolsa-2kg', nombre: 'Bolsa de hielo 2 kg', precio: '$ 1.000', destacado: true },

@@ -5,7 +5,16 @@ import Logo from './Logo'
 
 function PiePagina() {
   const anio = new Date().getFullYear()
-  const conWhatsApp = NEGOCIOS.filter((negocio) => enlaceWhatsApp(negocio, ''))
+  // Un renglón por número distinto: si todos los negocios comparten número, sale una sola vez.
+  const conNumero = NEGOCIOS.filter((negocio) => enlaceWhatsApp(negocio, ''))
+  const numeros = [...new Set(conNumero.map((negocio) => negocio.whatsapp.replace(/\D/g, '')))]
+  const conWhatsApp = numeros.map((numero) => {
+    const negocios = conNumero.filter((negocio) => negocio.whatsapp.replace(/\D/g, '') === numero)
+    return {
+      ...negocios[0],
+      nombre: negocios.length === NEGOCIOS.length ? null : negocios.map((n) => n.nombre).join(', '),
+    }
+  })
 
   return (
     <footer className="pie">
@@ -35,9 +44,9 @@ function PiePagina() {
             {conWhatsApp.length > 0 ? (
               conWhatsApp.map((negocio) => (
                 <li key={negocio.id}>
-                  <span>WhatsApp · {negocio.nombre}</span>
+                  <span>Teléfono / WhatsApp{negocio.nombre && ` · ${negocio.nombre}`}</span>
                   <a
-                    href={enlaceWhatsApp(negocio, `Hola, vi la página de ${negocio.nombre}.`)}
+                    href={enlaceWhatsApp(negocio, `Hola, vi la página de ${MARCA.nombre}.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
