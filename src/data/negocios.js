@@ -155,8 +155,8 @@ const DATOS = [
       { id: 'crema-cupuacu', seccion: 'natura', genero: 'mujer', nombre: 'Crema Ekos Cupuaçu', imagen: '/imagenes/productos/perfumes/natura/crema-cupuacu.jpg' },
       { id: 'tododia-fresa-vainilla', seccion: 'natura', genero: 'mujer', nombre: 'Hidratante corporal Tododia Fresa y Vainilla Dorada 400 ml', imagen: '/imagenes/productos/perfumes/natura/hidratante-corporal-tododia-400ml-aroma-a-ti-fresa-y-vainilla-dorada.jpg' },
       { id: 'lumina-anticaida', seccion: 'natura', genero: 'mujer', nombre: 'Lumina repuesto shampoo anticaída 300 ml', imagen: '/imagenes/productos/perfumes/natura/lumina-repuesto-shampoo-anticaida-300ml.jpg' },
-      { id: 'lumina-nutritivo', seccion: 'natura', genero: 'unisex', nombre: 'Lumina repuesto shampoo nutritivo (cabello seco)', imagen: '/imagenes/productos/perfumes/natura/repuesto-shampoo-nutritivo-lumina-cabello-seco.jpg' },
-      { id: 'lumina-liso', seccion: 'natura', genero: 'unisex', nombre: 'Lumina Restauración y Liso Prolongado', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-restauracion-e-liso-prolongado.jpg' },
+      { id: 'lumina-nutritivo', seccion: 'natura', genero: 'mujer', nombre: 'Lumina repuesto shampoo nutritivo (cabello seco)', imagen: '/imagenes/productos/perfumes/natura/repuesto-shampoo-nutritivo-lumina-cabello-seco.jpg' },
+      { id: 'lumina-liso', seccion: 'natura', genero: 'mujer', nombre: 'Lumina Restauración y Liso Prolongado', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-restauracion-e-liso-prolongado.jpg' },
       { id: 'lumina-spray', seccion: 'natura', genero: 'mujer', nombre: 'Lumina spray de aminoácidos (pre-secado)', imagen: '/imagenes/productos/perfumes/natura/natura-lumina-spray-de-aminoacidos-pre-secagem.jpg' },
 
       // --- Ésika ---
