@@ -1,10 +1,11 @@
 import { MARCA } from '../config/marca'
-import { NEGOCIOS } from '../data/negocios'
+import { NEGOCIOS, enlaceWhatsApp } from '../data/negocios'
 import { rutaNegocio } from '../hooks/useRuta'
 import Logo from './Logo'
 
 function PiePagina() {
   const anio = new Date().getFullYear()
+  const conWhatsApp = NEGOCIOS.filter((negocio) => enlaceWhatsApp(negocio, ''))
 
   return (
     <footer className="pie">
@@ -31,9 +32,24 @@ function PiePagina() {
         <div>
           <h2 className="pie__titulo">Contacto</h2>
           <ul className="pie__lista pie__contacto">
-            <li>
-              <span>Teléfono / WhatsApp</span> Por confirmar
-            </li>
+            {conWhatsApp.length > 0 ? (
+              conWhatsApp.map((negocio) => (
+                <li key={negocio.id}>
+                  <span>WhatsApp · {negocio.nombre}</span>
+                  <a
+                    href={enlaceWhatsApp(negocio, `Hola, vi la página de ${negocio.nombre}.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {negocio.whatsapp}
+                  </a>
+                </li>
+              ))
+            ) : (
+              <li>
+                <span>Teléfono / WhatsApp</span> Por confirmar
+              </li>
+            )}
             <li>
               <span>Correo electrónico</span> Por confirmar
             </li>

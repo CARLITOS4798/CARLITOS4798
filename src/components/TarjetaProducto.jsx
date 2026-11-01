@@ -1,4 +1,5 @@
-import { buscarSeccion } from '../data/negocios'
+import { buscarSeccion, enlaceWhatsApp } from '../data/negocios'
+import IconoWhatsApp from './IconoWhatsApp'
 
 const NOMBRE_GENERO = { mujer: 'Mujer', hombre: 'Hombre', unisex: 'Unisex' }
 
@@ -26,6 +27,11 @@ function Disponibles({ cantidad }) {
 
 function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
   const seccion = buscarSeccion(negocio, producto.seccion)
+  const agotado = producto.disponibles === 0
+  const pedido =
+    !producto.demo &&
+    !agotado &&
+    enlaceWhatsApp(negocio, `Hola, quiero pedir: ${producto.nombre} (${negocio.nombre}). ¿Está disponible?`)
   return (
     <article className={`tarjeta-producto tono-${negocio.tono || 'verde'}`}>
       <div className="tarjeta-producto__imagen">
@@ -63,6 +69,17 @@ function TarjetaProducto({ producto, negocio, mostrarNegocio = true }) {
           <p className="tarjeta-producto__precio">{producto.precio || 'Precio por definir'}</p>
           <Disponibles cantidad={producto.disponibles} />
         </div>
+        {pedido && (
+          <a
+            href={pedido}
+            className="boton boton--whatsapp boton--pequeno"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Pedir ${producto.nombre} por WhatsApp`}
+          >
+            <IconoWhatsApp /> Pedir por WhatsApp
+          </a>
+        )}
       </div>
     </article>
   )

@@ -28,6 +28,9 @@
 //    descripcion texto de presentación
 //    imagen      imagen grande de la tarjeta y la portada  (opcional)
 //    logo        logo del negocio                          (opcional)
+//    whatsapp    número de WhatsApp del negocio, ej. '300 123 4567' (opcional).
+//                Si lo pones, cada producto muestra "Pedir por WhatsApp" con el
+//                mensaje ya escrito. Números de 10 cifras se toman como de Colombia (+57).
 //    tono        color: 'calido', 'fresco', 'dorado', 'verde', 'ciruela' o 'hielo'
 //    secciones   grupos en que se ordenan los productos (opcional), ej. Sándwiches
 //                y Jugos, o las revistas Natura / Ésika / Yanbal. Cada sección:
@@ -63,6 +66,7 @@ const DATOS = [
       'Sándwiches preparados al momento, jugos naturales de fruta y nuestra chicha de arroz, con la que empezó todo.',
     imagen: '/imagenes/negocios/apetitivos.svg',
     logo: '', // ej. '/imagenes/negocios/apetitivos-logo.png'
+    whatsapp: '', // ✏️ ej. '300 123 4567'
     tono: 'calido',
     secciones: [
       { id: 'sandwiches', nombre: 'Sándwiches', descripcion: 'Preparados al momento.' },
@@ -111,6 +115,7 @@ const DATOS = [
       'Perfumes, cremas, maquillaje y cuidado personal por catálogo: Natura, Ésika y Yanbal. Mira los productos de cada revista y haz tu pedido.',
     imagen: '/imagenes/negocios/perfumes.svg',
     logo: '',
+    whatsapp: '', // ✏️ ej. '300 123 4567'
     tono: 'ciruela',
     // Una sección por revista.  enlace → revista digital de la campaña actual (opcional)
     secciones: [
@@ -183,6 +188,7 @@ const DATOS = [
       'Productos de aseo para el hogar y el cuidado personal: detergentes, limpiadores, ambientadores, pañales y más.',
     imagen: '/imagenes/negocios/variedades.svg',
     logo: '',
+    whatsapp: '', // ✏️ ej. '300 123 4567'
     tono: 'verde',
     secciones: [
       { id: 'detergentes', nombre: 'Detergentes' },
@@ -261,6 +267,7 @@ const DATOS = [
       'Hielo para tus bebidas, neveras y celebraciones. Pídelo en la cantidad que necesites.',
     imagen: '/imagenes/negocios/hielo.svg',
     logo: '',
+    whatsapp: '', // ✏️ ej. '300 123 4567'
     tono: 'hielo',
     productos: [
       { id: 'bolsa-2kg', nombre: 'Bolsa de hielo 2 kg', precio: '$ 1.000', destacado: true },
@@ -294,4 +301,12 @@ export const TODOS_LOS_PRODUCTOS = NEGOCIOS.flatMap((negocio) =>
 
 export const hayDemos = (productos) => productos.some((producto) => producto.demo)
 
-export const buscarSeccion = (negocio, id) => negocio.secciones?.find((seccion) => seccion.id === id)
+// Enlace que abre WhatsApp con el mensaje ya escrito. Sin número → null (no se muestra el botón).
+export const enlaceWhatsApp = (negocio, mensaje) => {
+  const digitos = (negocio.whatsapp || '').replace(/\D/g, '')
+  if (!digitos) return null
+  const numero = digitos.length === 10 ? `57${digitos}` : digitos
+  return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
+}
+
+export const buscarSeccion =(negocio, id) => negocio.secciones?.find((seccion) => seccion.id === id)

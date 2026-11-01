@@ -1,6 +1,7 @@
-import { NEGOCIOS, buscarNegocio, hayDemos } from '../data/negocios'
+import { NEGOCIOS, buscarNegocio, enlaceWhatsApp, hayDemos } from '../data/negocios'
 import { rutaNegocio } from '../hooks/useRuta'
 import AvisoDemo from './AvisoDemo'
+import IconoWhatsApp from './IconoWhatsApp'
 import ImagenNegocio from './ImagenNegocio'
 import ProductosPorSeccion from './ProductosPorSeccion'
 import TarjetaProducto from './TarjetaProducto'
@@ -30,6 +31,7 @@ function PaginaNegocio({ id }) {
 
   const productos = negocio.productos
   const otros = NEGOCIOS.filter((n) => n.id !== negocio.id)
+  const contacto = enlaceWhatsApp(negocio, `Hola, vi la página de ${negocio.nombre} y quiero hacer un pedido.`)
 
   return (
     <div className={`pagina-negocio tono-${negocio.tono || 'verde'}`}>
@@ -46,14 +48,26 @@ function PaginaNegocio({ id }) {
               </div>
               <h1 id="titulo-negocio">{negocio.nombre}</h1>
               <p className="negocio-portada__descripcion">{negocio.descripcion}</p>
-              {/* Botón (no enlace) para no cambiar el "#" de la dirección, que define la página. */}
-              <button
-                type="button"
-                className="boton boton--negocio"
-                onClick={() => document.getElementById('productos-negocio')?.scrollIntoView()}
-              >
-                Ver productos <span aria-hidden="true">↓</span>
-              </button>
+              <div className="negocio-portada__acciones">
+                {/* Botón (no enlace) para no cambiar el "#" de la dirección, que define la página. */}
+                <button
+                  type="button"
+                  className="boton boton--negocio"
+                  onClick={() => document.getElementById('productos-negocio')?.scrollIntoView()}
+                >
+                  Ver productos <span aria-hidden="true">↓</span>
+                </button>
+                {contacto && (
+                  <a
+                    href={contacto}
+                    className="boton boton--whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconoWhatsApp /> Escríbenos por WhatsApp
+                  </a>
+                )}
+              </div>
             </div>
             <div className="negocio-portada__imagen">
               <ImagenNegocio negocio={negocio} />
