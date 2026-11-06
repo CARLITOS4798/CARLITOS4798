@@ -1184,6 +1184,16 @@
   font-size: 0.85rem;
   color: var(--texto-suave);
 }
+.carrito__subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+.carrito__subtotal + .carrito__total {
+  margin-top: 4px;
+}
 .carrito__total {
   display: flex;
   justify-content: space-between;

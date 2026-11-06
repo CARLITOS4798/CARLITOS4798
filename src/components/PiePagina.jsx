@@ -1,4 +1,5 @@
-import { CUENTA_TRANSFERENCIA, HORARIO, MARCA } from '../config/marca'
+import { CUENTA_TRANSFERENCIA, DOMICILIO, HORARIO, MARCA, PUNTO_RECOGIDA } from '../config/marca'
+import { formatoPesos } from '../carrito/carrito'
 import { NEGOCIOS, enlaceWhatsApp } from '../data/negocios'
 import { rutaNegocio } from '../hooks/useRuta'
 import Logo from './Logo'
@@ -66,10 +67,13 @@ function PiePagina() {
               <span>Pagos</span> Efectivo o {CUENTA_TRANSFERENCIA.medio} {CUENTA_TRANSFERENCIA.numero}
             </li>
             <li>
-              <span>Correo electrónico</span> Por confirmar
+              <span>Domicilios</span> {formatoPesos(DOMICILIO.precio)} · {DOMICILIO.zonas}
             </li>
             <li>
-              <span>Ubicación</span> Por confirmar
+              <span>Punto de recogida</span> {PUNTO_RECOGIDA}
+            </li>
+            <li>
+              <span>Correo electrónico</span> Por confirmar
             </li>
           </ul>
         </div>

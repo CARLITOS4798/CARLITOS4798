@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { CUENTA_TRANSFERENCIA, HORARIO, estaAbierto } from '../config/marca'
+import { CUENTA_TRANSFERENCIA, DOMICILIO, HORARIO, PUNTO_RECOGIDA, estaAbierto } from '../config/marca'
 import { enlaceWhatsApp } from '../data/negocios'
 import IconoWhatsApp from '../components/IconoWhatsApp'
 import { formatoPesos, maximoPedido, useCarrito } from './carrito'
@@ -41,6 +41,8 @@ function numeroPedido() {
   return `${dos(ahora.getDate())}${dos(ahora.getMonth() + 1)}-${dos(ahora.getHours())}${dos(ahora.getMinutes())}`
 }
 
+const costoEntrega = (datos) => (datos.entrega === 'domicilio' ? DOMICILIO.precio : 0)
+
 // Texto del pedido que llega por WhatsApp, agrupado por negocio.
 function mensajePedido(numero, lineas, totalPesos, hayPreciosPendientes, datos) {
   const negocios = [...new Map(lineas.map((l) => [l.negocio.id, l.negocio])).values()]
@@ -54,16 +56,16 @@ function mensajePedido(numero, lineas, totalPesos, hayPreciosPendientes, datos) 
     return [`*${negocio.nombre}*`, ...renglones].join('\n')
   })
 
-  let total = totalPesos > 0 ? `*Total:* ${formatoPesos(totalPesos)}` : '*Total:* por confirmar'
+  const conDomicilio = datos.entrega === 'domicilio'
+  let total = totalPesos > 0 ? `*Total:* ${formatoPesos(totalPesos + costoEntrega(datos))}` : '*Total:* por confirmar'
   if (totalPesos > 0 && hayPreciosPendientes) total += ' + productos por confirmar'
 
-  const entrega =
-    datos.entrega === 'domicilio'
-      ? [
-          '*Entrega:* Domicilio',
-          `*Dirección:* ${datos.direccion.trim()}${datos.barrio.trim() ? `, barrio ${datos.barrio.trim()}` : ''}`,
-        ]
-      : ['*Entrega:* Paso a recogerlo']
+  const entrega = conDomicilio
+    ? [
+        '*Entrega:* Domicilio',
+        `*Dirección:* ${datos.direccion.trim()}${datos.barrio.trim() ? `, barrio ${datos.barrio.trim()}` : ''}`,
+      ]
+    : ['*Entrega:* Paso a recogerlo']
 
   return [
     `*Pedido #${numero}*`,
@@ -71,6 +73,7 @@ function mensajePedido(numero, lineas, totalPesos, hayPreciosPendientes, datos) 
     '',
     bloques.join('\n\n'),
     '',
+    ...(conDomicilio ? [`*Domicilio:* ${formatoPesos(DOMICILIO.precio)}`] : []),
     total,
     '',
     `*Nombre:* ${datos.nombre.trim()}`,
@@ -200,9 +203,17 @@ function PanelCarrito() {
               </section>
             ))}
 
+            {datos.entrega === 'domicilio' && (
+              <div className="carrito__subtotal">
+                <span>Domicilio</span>
+                <span>{formatoPesos(DOMICILIO.precio)}</span>
+              </div>
+            )}
             <div className="carrito__total">
               <span>Total</span>
-              <strong>{carrito.totalPesos > 0 ? formatoPesos(carrito.totalPesos) : 'Por confirmar'}</strong>
+              <strong>
+                {carrito.totalPesos > 0 ? formatoPesos(carrito.totalPesos + costoEntrega(datos)) : 'Por confirmar'}
+              </strong>
             </div>
             {carrito.hayPreciosPendientes && (
               <p className="carrito__nota">Los productos sin precio te los confirmamos por WhatsApp.</p>
@@ -227,6 +238,11 @@ function PanelCarrito() {
                   </label>
                 ))}
               </div>
+              <p className="carrito__nota">
+                {datos.entrega === 'domicilio'
+                  ? `Domicilio ${formatoPesos(DOMICILIO.precio)} · ${DOMICILIO.zonas}.`
+                  : `Recoges en: ${PUNTO_RECOGIDA}.`}
+              </p>
 
               <label className="campo">
                 <span>Nombre *</span>

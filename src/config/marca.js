@@ -16,6 +16,15 @@ export const HORARIO = {
 
 export const estaAbierto = (fecha = new Date()) => fecha.getHours() >= HORARIO.abre && fecha.getHours() < HORARIO.cierra
 
+// Domicilio: valor en pesos (sin puntos) que se suma al total, y hasta dónde se lleva.
+export const DOMICILIO = {
+  precio: 3000,
+  zonas: 'Todos los sectores de la isla',
+}
+
+// Dónde pasan a recoger los clientes que no piden domicilio.
+export const PUNTO_RECOGIDA = 'Sector La Loma, por la iglesia Pueblo Fuerte, donde Yaque'
+
 // Cuenta a la que los clientes transfieren. Se muestra en el carrito cuando eligen pagar por transferencia.
 export const CUENTA_TRANSFERENCIA = {
   medio: 'Nequi',
