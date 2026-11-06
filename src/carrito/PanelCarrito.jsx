@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { CUENTA_TRANSFERENCIA, HORARIO, estaAbierto } from '../config/marca'
 import { enlaceWhatsApp } from '../data/negocios'
 import IconoWhatsApp from '../components/IconoWhatsApp'
 import { formatoPesos, maximoPedido, useCarrito } from './carrito'
@@ -6,7 +7,22 @@ import ContadorCantidad from './ContadorCantidad'
 
 const CLAVE_DATOS = 'nuestra-tienda-datos-entrega'
 const DATOS_VACIOS = { entrega: 'domicilio', nombre: '', direccion: '', barrio: '', pago: 'Efectivo', notas: '' }
-const FORMAS_DE_PAGO = ['Efectivo', 'Transferencia / Nequi']
+const PAGO_TRANSFERENCIA = `Transferencia / ${CUENTA_TRANSFERENCIA.medio}`
+const FORMAS_DE_PAGO = ['Efectivo', PAGO_TRANSFERENCIA]
+
+// Datos para transferir, con el recordatorio de mandar el comprobante.
+function DatosTransferencia() {
+  return (
+    <div className="carrito__cuenta">
+      <p>
+        Transfiere a <strong>{CUENTA_TRANSFERENCIA.medio}</strong>
+      </p>
+      <p className="carrito__cuenta-numero">{CUENTA_TRANSFERENCIA.numero}</p>
+      <p>A nombre de {CUENTA_TRANSFERENCIA.titular}</p>
+      <p className="carrito__nota">Envíanos el comprobante por el mismo chat de WhatsApp.</p>
+    </div>
+  )
+}
 
 // Los datos de entrega se recuerdan en el navegador del cliente para su próximo pedido.
 function leerDatos() {
@@ -136,6 +152,7 @@ function PanelCarrito() {
               Tu pedido es el <strong>#{enviado}</strong>.
             </p>
             <p>Se abrió WhatsApp con tu pedido escrito. Solo falta tocar <strong>Enviar</strong> en el chat.</p>
+            {datos.pago === PAGO_TRANSFERENCIA && <DatosTransferencia />}
             <button type="button" className="boton boton--primario" onClick={() => terminar(true)}>
               Ya lo envié, vaciar carrito
             </button>
@@ -254,6 +271,7 @@ function PanelCarrito() {
                   ))}
                 </select>
               </label>
+              {datos.pago === PAGO_TRANSFERENCIA && <DatosTransferencia />}
 
               <label className="campo">
                 <span>Notas (opcional)</span>
@@ -265,6 +283,11 @@ function PanelCarrito() {
                 />
               </label>
             </fieldset>
+
+            <p className="carrito__nota">
+              Horario de atención: {HORARIO.texto}
+              {!estaAbierto() && ' Ahora estamos cerrados: puedes enviar tu pedido y te respondemos al abrir.'}
+            </p>
 
             <div className="carrito__enviar">
               <button type="submit" className="boton boton--whatsapp">

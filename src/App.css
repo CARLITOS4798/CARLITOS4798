@@ -1196,6 +1196,22 @@
   font-size: 0.85rem;
   color: var(--texto-suave);
 }
+.carrito__cuenta {
+  padding: 12px 14px;
+  border: 1px dashed var(--borde);
+  border-radius: 12px;
+  background: var(--crema);
+  text-align: center;
+  font-size: 0.92rem;
+}
+.carrito__cuenta p {
+  margin: 2px 0;
+}
+.carrito__cuenta-numero {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
 .carrito__campos {
   display: flex;
   flex-direction: column;

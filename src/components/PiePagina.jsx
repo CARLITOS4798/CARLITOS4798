@@ -1,4 +1,4 @@
-import { MARCA } from '../config/marca'
+import { CUENTA_TRANSFERENCIA, HORARIO, MARCA } from '../config/marca'
 import { NEGOCIOS, enlaceWhatsApp } from '../data/negocios'
 import { rutaNegocio } from '../hooks/useRuta'
 import Logo from './Logo'
@@ -59,6 +59,12 @@ function PiePagina() {
                 <span>Teléfono / WhatsApp</span> Por confirmar
               </li>
             )}
+            <li>
+              <span>Horario de atención</span> {HORARIO.texto}
+            </li>
+            <li>
+              <span>Pagos</span> Efectivo o {CUENTA_TRANSFERENCIA.medio} {CUENTA_TRANSFERENCIA.numero}
+            </li>
             <li>
               <span>Correo electrónico</span> Por confirmar
             </li>
