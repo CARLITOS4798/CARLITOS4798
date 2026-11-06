@@ -17,8 +17,16 @@ function leerDatos() {
   }
 }
 
+// Número de pedido con la fecha y la hora del envío (día-mes-hora-minuto), ej. "0511-1432".
+// Sin servidor no hay consecutivo; así cada pedido se distingue y se busca fácil en WhatsApp.
+function numeroPedido() {
+  const ahora = new Date()
+  const dos = (n) => String(n).padStart(2, '0')
+  return `${dos(ahora.getDate())}${dos(ahora.getMonth() + 1)}-${dos(ahora.getHours())}${dos(ahora.getMinutes())}`
+}
+
 // Texto del pedido que llega por WhatsApp, agrupado por negocio.
-function mensajePedido(lineas, totalPesos, hayPreciosPendientes, datos) {
+function mensajePedido(numero, lineas, totalPesos, hayPreciosPendientes, datos) {
   const negocios = [...new Map(lineas.map((l) => [l.negocio.id, l.negocio])).values()]
   const bloques = negocios.map((negocio) => {
     const renglones = lineas
@@ -42,6 +50,7 @@ function mensajePedido(lineas, totalPesos, hayPreciosPendientes, datos) {
       : ['*Entrega:* Paso a recogerlo']
 
   return [
+    `*Pedido #${numero}*`,
     'Hola, quiero hacer este pedido:',
     '',
     bloques.join('\n\n'),
@@ -59,7 +68,7 @@ function PanelCarrito() {
   const carrito = useCarrito()
   const { lineas, abierto, cerrar } = carrito
   const [datos, setDatos] = useState(leerDatos)
-  const [enviado, setEnviado] = useState(false)
+  const [enviado, setEnviado] = useState(null) // número del pedido enviado, o null
   const [intentoEnviar, setIntentoEnviar] = useState(false)
   const botonCerrar = useRef(null)
 
@@ -93,14 +102,15 @@ function PanelCarrito() {
       // Sin almacenamiento: no pasa nada, solo no se recuerdan los datos.
     }
     // Todos los negocios comparten número; se usa el del primer producto del pedido.
-    const mensaje = mensajePedido(lineas, carrito.totalPesos, carrito.hayPreciosPendientes, datos)
+    const numero = numeroPedido()
+    const mensaje = mensajePedido(numero, lineas, carrito.totalPesos, carrito.hayPreciosPendientes, datos)
     window.open(enlaceWhatsApp(lineas[0].negocio, mensaje), '_blank', 'noopener')
-    setEnviado(true)
+    setEnviado(numero)
   }
 
   const terminar = (vaciar) => {
     if (vaciar) carrito.vaciar()
-    setEnviado(false)
+    setEnviado(null)
     setIntentoEnviar(false)
     cerrar()
   }
@@ -122,11 +132,14 @@ function PanelCarrito() {
           <div className="carrito__cuerpo carrito__listo">
             <p className="carrito__listo-icono" aria-hidden="true">✓</p>
             <h3>¡Ya casi!</h3>
+            <p>
+              Tu pedido es el <strong>#{enviado}</strong>.
+            </p>
             <p>Se abrió WhatsApp con tu pedido escrito. Solo falta tocar <strong>Enviar</strong> en el chat.</p>
             <button type="button" className="boton boton--primario" onClick={() => terminar(true)}>
               Ya lo envié, vaciar carrito
             </button>
-            <button type="button" className="boton boton--secundario" onClick={() => setEnviado(false)}>
+            <button type="button" className="boton boton--secundario" onClick={() => setEnviado(null)}>
               Volver al pedido
             </button>
           </div>
